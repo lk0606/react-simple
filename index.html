@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div id="root"></div>
+    <!--<div onclick="test.bind(this, ...[1])">test</div>-->
+</body>
+</html>
+
+<script src="./index.js"></script>
+<script>
+    function test(...arg) {
+        console.log(this, arg, 'arg test')
+    }
+</script>
