@@ -22,4 +22,7 @@ A simplified version of react
 ```
 - 在`virtual dom`中，事件函数会直接被赋值给对应事件，此时相当于执行一次，事件是可以重复触发的，所以需要`bind this`，详情请看目录`./index.js`和`./react-dom/index.js`日志
 - 在原生中，`call apply`点击时会立即执行，而`bind`则需要增加`()`在执行一次，详见`./index.html`
-- `this`取值严格依赖执行环境，例如原生`./index.html`中，是`div`触发，所以绑定`this`永远指向它本身，而`./index.js`中，真正执行环境需要到`./react-dom/index.js`中去判断，`react`中使用`bind`绑定`this`，此时的`this`正是`React`对象本身
+- `this`取值严格依赖执行环境，例如原生`./index.html`中，是`div`触发，所以绑定`this`永远指向它本身，而`./index.js`中，真正执行环境需要到`./react-dom/index.js`中去判断，`react`中使用`bind`绑定`this`，此时的`this`正是`React`对象本身  
+![调用函数](https://github.com/lk0606/react-simple/blob/master/static/log-img/this/1.jpg)  
+![执行环境](https://github.com/lk0606/react-simple/blob/master/static/log-img/this/2.jpg)  
+![执行结果对比](https://github.com/lk0606/react-simple/blob/master/static/log-img/this/3.jpg)
