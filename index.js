@@ -8,10 +8,38 @@ const ele = (
         hello,
         <p>
             react
-            <span>child</span>
+            <p>child</p>
         </p>
     </div>
 )
+
+// function Home(props) {
+//     console.log(props, 'props Home')
+//     return (
+//         <div className="active" title="test" onClick={test.bind(this, 1)}>
+//             hello,
+//             <p>
+//                 react
+//                 <p>child</p>
+//             </p>
+//         </div>
+//     )
+// }
+class Home {
+    constructor(props) {
+        console.log(props, 'props')
+    }
+    render() {
+        return <div className="active" title="test" onClick={test.bind(this, 1)}>
+            hello,
+            <p>
+                react
+                <p>child</p>
+            </p>
+        </div>
+    }
+}
+
 
 function test(...arg) {
     console.log(this, arg, 'this, arg')
@@ -19,4 +47,4 @@ function test(...arg) {
 
 console.log(ele, 'ele')
 
-ReactDOM.render(ele, document.getElementById('root'))
+ReactDOM.render(<Home name={'title'}/>, document.getElementById('root'))
