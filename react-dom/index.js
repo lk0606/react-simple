@@ -1,9 +1,5 @@
 import Component from '../react/component'
 
-const ReactDOM = {
-    render
-}
-
 // 渲染虚拟dom
 function render(vnode, root) {
     if([undefined, null, false, true].includes(vnode)) {
@@ -139,4 +135,8 @@ function setAttribute(dom, key, value) {
     }
 }
 
-export default ReactDOM
+export default {
+    render
+}
+
+export { render }

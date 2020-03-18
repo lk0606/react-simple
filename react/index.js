@@ -1,12 +1,6 @@
 
 import Component from './component'
 
-const React = {
-    createElement,
-    Component
-}
-
-
 function createElement(tag, attrs, ...children) {
     return {
         tag,
@@ -15,4 +9,8 @@ function createElement(tag, attrs, ...children) {
     }
 }
 
-export default React
+export default {
+    createElement,
+    Component
+}
+export { Component }

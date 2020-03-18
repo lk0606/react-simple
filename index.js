@@ -1,7 +1,7 @@
 
 
-import React from './react'
-import ReactDOM from './react-dom'
+import React, { Component } from './react'
+import ReactDOM, { render } from './react-dom'
 
 const ele = (
     <div className="active" title="test" onClick={test.bind(this, 1)}>
@@ -25,7 +25,7 @@ const ele = (
 //         </div>
 //     )
 // }
-class Home extends React.Component{
+class Home extends Component{
     constructor(props) {
         super(props)
         console.log(this, this.props===props, 'props')
