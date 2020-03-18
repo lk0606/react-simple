@@ -2,6 +2,7 @@ import Component from '../react/component'
 
 // 渲染虚拟dom
 function render(vnode, root) {
+    // console.log(vnode, root, 'vnode, root')
     if([undefined, null, false, true].includes(vnode)) {
         return
     }
@@ -10,11 +11,16 @@ function render(vnode, root) {
 
 // 创建虚拟dom
 function _render(vnode) {
-    // console.log(vnode, root, 'vnode, root')
     // console.log(this, 'this render')
-    if(!vnode) {
+    if([undefined, null, false, true].includes(vnode)) {
         return
     }
+
+    if(typeof vnode === 'number') {
+        vnode = String(vnode)
+    }
+
+
 
     if(typeof vnode === 'string') {
         return document.createTextNode(vnode)
@@ -56,19 +62,41 @@ function _render(vnode) {
 
 }
 // 渲染类组件
-function renderComponent(comp) {
+export function renderComponent(comp) {
+    if(comp.base) {
+        if(comp.componentWillUpdate) {
+            comp.componentWillUpdate()
+        }
+    }
     // 调用实例 生成虚拟 dom
     const renderer = comp.render()
+    const base = _render(renderer)
+
+    if(comp.base && comp.base.parentNode) {
+        comp.base.parentNode.replaceChild(base, comp.base)
+        if(comp.componentDidUpdate) comp.componentDidUpdate()
+    }
+
     // 挂载虚拟dom 方法
     // console.log(renderer, 'renderer renderComponent')
-    comp.base = _render(renderer)
+    comp.base = base
 }
 // 设置类组件属性
 function setComponentProps(comp, props) {
+    if(!comp.base) {
+        if(comp.componentWillMount) comp.componentWillMount()
+        if(comp.componentWillReceiveProps) comp.componentWillReceiveProps(props)
+    }
+
     // 设置类属性
     comp.props = props
     // console.log(comp, 'comp setComponentProps')
     renderComponent(comp)
+    if(comp.base) {
+        if(comp.componentDidMount) {
+            comp.componentDidMount()
+        }
+    }
 }
 
 /**
