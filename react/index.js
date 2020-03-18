@@ -1,7 +1,9 @@
 
+import Component from './component'
 
 const React = {
-    createElement
+    createElement,
+    Component
 }
 
 

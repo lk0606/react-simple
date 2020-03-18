@@ -25,9 +25,10 @@ const ele = (
 //         </div>
 //     )
 // }
-class Home {
+class Home extends React.Component{
     constructor(props) {
-        console.log(props, 'props')
+        super(props)
+        console.log(this, this.props===props, 'props')
     }
     render() {
         return <div className="active" title="test" onClick={test.bind(this, 1)}>
