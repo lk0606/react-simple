@@ -1,17 +1,21 @@
+
+
 import Component from '../react/component'
+import {diff, diffNode} from './diff'
 
 // 渲染虚拟dom
-function render(vnode, root) {
+function render(vnode, root, dom) {
     // console.log(vnode, root, 'vnode, root')
     if([undefined, null, false, true].includes(vnode)) {
         return
     }
-    return root.appendChild(_render(vnode))
+    return diff(dom, vnode, root)
+    // return root.appendChild(_render(vnode))
 }
 
 // 创建虚拟dom
 function _render(vnode) {
-    // console.log(this, 'this render')
+    // console.log(this, vnode, 'this render')
     if([undefined, null, false, true].includes(vnode)) {
         return
     }
@@ -70,19 +74,20 @@ export function renderComponent(comp) {
     }
     // 调用实例 生成虚拟 dom
     const renderer = comp.render()
-    const base = _render(renderer)
+    // const base = _render(renderer)
+    const base = diffNode(comp.base, renderer)
 
-    if(comp.base && comp.base.parentNode) {
-        comp.base.parentNode.replaceChild(base, comp.base)
-        if(comp.componentDidUpdate) comp.componentDidUpdate()
-    }
+    // if(comp.base && comp.base.parentNode) {
+    //     comp.base.parentNode.replaceChild(base, comp.base)
+    //     if(comp.componentDidUpdate) comp.componentDidUpdate()
+    // }
+    comp.base = base
 
     // 挂载虚拟dom 方法
     // console.log(renderer, 'renderer renderComponent')
-    comp.base = base
 }
 // 设置类组件属性
-function setComponentProps(comp, props) {
+export function setComponentProps(comp, props) {
     if(!comp.base) {
         if(comp.componentWillMount) comp.componentWillMount()
         if(comp.componentWillReceiveProps) comp.componentWillReceiveProps(props)
@@ -105,7 +110,7 @@ function setComponentProps(comp, props) {
  * @param props 组件传值
  * @return {Component} 类组件的实例
  */
-function createComponent(comp, props) {
+export function createComponent(comp, props) {
     // console.log(comp, props, 'comp, props createComponent')
     let inst
 
@@ -132,7 +137,7 @@ function createComponent(comp, props) {
 }
 
 // 设置 dom 属性
-function setAttribute(dom, key, value) {
+export function setAttribute(dom, key, value) {
     // console.log(this, 'setAttribute')
 
     // event onClick onChange

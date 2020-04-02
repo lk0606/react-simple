@@ -4,7 +4,9 @@ import { renderComponent } from '../react-dom'
 export default class Component {
     constructor (props = {}) {
         this.props = props
-        this.state = {a:1}
+        this.state = {
+
+        }
     }
     setState(newState) {
         // 数据处理

@@ -15,22 +15,22 @@ const ele = (
     </div>
 )
 
-// function Home(props) {
-//     console.log(props, 'props Home')
-//     return (
-//         <div className="active" title="test" onClick={test.bind(this, 1)}>
-//             hello,
-//             <p>
-//                 react
-//                 <p>child</p>
-//             </p>
-//         </div>
-//     )
-// }
-class Home extends Component{
+function HomeFn(props) {
+    console.log(props, 'props Home')
+    return (
+        <div className="active" title="test" onClick={test.bind(this, 1)}>
+            hello,
+            <p>
+                react
+                <p>child</p>
+            </p>
+        </div>
+    )
+}
+class HomeClass extends Component{
     constructor(props) {
         super(props)
-        console.log(this, this.props===props, 'props')
+        // console.log(this, this.props===props, 'props')
         this.state = {
             num: 0
         }
@@ -76,6 +76,7 @@ class Home extends Component{
                 react: {this.state.num}
                 <p>
                     <button
+                        id={0}
                         style={{width: '60px', height: '30px'}}
                         type="button"
                         onClick={this.handleClick.bind(this)}>click</button>
@@ -90,6 +91,6 @@ function test(...arg) {
     console.log(this, arg, 'this, arg')
 }
 
-console.log(ele, 'ele')
+console.log(<HomeClass/>, 'ele')
 
-ReactDOM.render(<Home name={'title'}/>, document.getElementById('root'))
+ReactDOM.render(<HomeClass/>, document.getElementById('root'))
