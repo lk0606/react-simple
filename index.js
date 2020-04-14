@@ -47,13 +47,13 @@ class HomeClass extends Component{
     componentDidMount() {
         console.log('组件加载完成')
         for (let i = 0; i < 3; i++) {
-            this.setState((preState, prevProps) => {
+            this.setState((preState, preProps) => {
                 console.log(preState);
-
                 return {
                     num: preState.num + 1
                 }
             })
+            // console.log(this.state.num, 'num')
         }
     }
 
