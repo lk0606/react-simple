@@ -46,6 +46,15 @@ class HomeClass extends Component{
 
     componentDidMount() {
         console.log('组件加载完成')
+        for (let i = 0; i < 3; i++) {
+            this.setState((preState, prevProps) => {
+                console.log(preState);
+
+                return {
+                    num: preState.num + 1
+                }
+            })
+        }
     }
 
     componentWillUpdate() {
@@ -91,6 +100,6 @@ function test(...arg) {
     console.log(this, arg, 'this, arg')
 }
 
-console.log(<HomeClass/>, 'ele')
+console.log(ele, 'ele')
 
-ReactDOM.render(<HomeClass/>, document.getElementById('root'))
+ReactDOM.render(<HomeClass title="lk-test"/>, document.getElementById('root'))
